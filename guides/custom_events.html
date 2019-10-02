@@ -1,0 +1,35 @@
+<h1>Custom Events</h1>
+<p>Custom events are a great way to add features into your mod without needing
+to create an item or block!</p>
+
+<h2>Find DigiEvents</h2>
+<ol>
+
+<li>Navigate to src/main/java/com/digitaladventures/digimod/DigiEvents.java</li>
+<li>Copy and paste an example event which might work for what you'd like to be doing.</li>
+<li>Alternatively find your own events by searching through the minecraft code or online.</li>
+<li>All custom events should be subscribed.</li>
+<li>Make sure to give your new event a unique name. Below is an example of FastSwimming</li>
+<li>When an event occurs it will give us information as an object. For the PlayerTickEvent the player is
+accessible through the event instance. I can then check if the player is swinging their arm (left clicking),
+and is in water. If they are I grab the Look vector coordinates and multiply down the power. Then I set the velocity
+to these 3 variables to push me forward.</li>
+
+<pre>
+  @SubscribeEvent   
+	public void fastSwimming(PlayerTickEvent event){ 
+			if(event.player.isSwingInProgress) { 
+				if(event.player.isInWater()) { 
+					System.out.print("swimming"); 
+					double x = event.player.getLookVec().x*0.3; 
+					double y = event.player.getLookVec().y*0.3; 
+					double z = event.player.getLookVec().z*0.3; 
+					event.player.setVelocity(x, y, z); 
+
+				} 
+			} 
+	} 
+	</pre>
+
+  <li>Now when I play my game I'll have swimming boosts when I click in the water.</li>
+</ol>

@@ -1,0 +1,40 @@
+<h1>Replace Plant Texture</h1>
+<p>This is a guide that will help students replace digiplant items textures with their own designs
+which is the quickest way to have their creations come to life in minecraft.</p>
+
+
+<h2>Replace Plant Texture Files</h2>
+<ol>
+  <li>Name the image files to match digi_plant0-7.</li>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/textures/blocks.</li>
+  <li>Drag your block textures into the blocks folder either on top of any of the files in the folder, or
+    on the actual folder.
+  </li>
+  <li>It will prompt you to copy or link the file into the folder, you will almost always want to copy.</li>
+  <li>It will ask you to overwrite the old image, we will want to do this as well.</li>
+</ol>
+
+<h2>Adjusting Plant Models</h2>
+<p>If you would like to adjust the order of the plants, or you would like to use the same texture for multiple stages
+ you will want to change the model json files for the digi_plants</p>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/models/block.</li>
+  <li>digiplant.json (with no number at the end) is what the plant looks like while in your hand.</li>
+  <pre>{ 
+   "parent": "block/crop",   
+   "textures": { 
+       "crop": "dm:blocks/digi_plant0" 
+   } 
+}</pre>
+  <li>You will need to replace the text after the "dm:blocks/" to match what texture name you want to use for the look of the plant
+  when it is being held. </li>
+  <li>You can do this for all 8 other digi_plant#.json files. digi_plant0.json is the youngest plant, and digi_plant8.json is the oldest the plant will appear.</li>
+</ol>
+
+
+<h2>Replace Seed Texture File</h2>
+<p>Seed textures are just like any other item texture.</p>
+<a href="guides/replace_item_texture.html">Replace Item Texture</a>
+
+<h2>Replace Plant and Seed Name</h2>
+<a href="naming_items_blocks.html">Naming Items and Blocks</a>

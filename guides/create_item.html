@@ -1,0 +1,53 @@
+<h1>Create Item</h1>
+
+<h2>Item Textures</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/textures/items.</li>
+  <li>Drag your item texture into the items folder either on top of any of the files in the folder, or
+    on the actual folder.
+  </li>
+</ol>
+
+<h2>Item Model</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/models/items.</li>
+  <li>to make adding a model file more quickly select the digi_food.json file, press cmd+c and then cmd+v to copy and paste it.</li>
+  <li>The digi_food.json file is the most basic model file, there are many other similar json model files that can be copied as well.</li>
+  <li>Rename the file to match your new item, only use lowercase letters and underscores instead of
+  spaces. This guide uses my_item but you should use your own unique item name</li>
+  <li>double click into this new my_item.json file and change the texture location to match your new item.</li>
+
+  <pre>{
+     "parent": "item/generated",         
+     "textures": {                       
+         "layer0": "dm:items/my_item"   
+     } 
+  } 
+  </pre>
+
+</ol>
+
+<h2>Item Lang</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/lang/en_us.lang</li>
+  <li>Add in a new line of code at the bottom</li>
+  <li>type "Item.my_item.name= My New Item"</li>
+  <li>Everything after the = sign in this line of code will show up as the name of this item in minecraft</li>
+  <li>This is only the display name, we will still use my_item as name we refer to the item as in our code</li>
+  <pre>
+  item.my_item.name=My New Item
+  </pre>
+</ol>
+
+<h2>Initialize</h2>
+
+<ol>
+  <li>Navigate to /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiItems.java</li>
+  <li>Scroll to the bottom where it says "//New Items"</li>
+  <li>Add this new line of Java Code "public static final Item MY_ITEM = new ItemBase("my_item");"</li>
+  <li>In this code we are creating a new Item called MY_ITEM which is a clone of the ItemBase</li>
+  <li>ItemBase holds all of the information for adding this item into minecraft and connecting
+  the texture and model files to this item</li>
+  <li>Public static final are identifiers which describe how this new instance or clone of the ItemBase can be
+  interacted with.</li>
+</ol>

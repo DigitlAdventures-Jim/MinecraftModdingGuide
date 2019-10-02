@@ -1,0 +1,82 @@
+<h1>Create Tool</h1>
+<p>Tools include Swords, Hoes, Pickaxes, Axes and Spades(shovels).</p>
+<p>Tools are very similar to items except that they are treated differently when holding them. The difference when adding
+a new Tool in compared to an Item is that the Model json file is a bit different and that the initialization of the item
+requires a different base class</p>
+
+<h2>Tool Textures</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/textures/items.</li>
+  <li>Drag your tool texture into the items folder either on top of any of the files in the folder, or
+    on the actual folder.
+  </li>
+</ol>
+
+<h2>Tool Model</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/models/items.</li>
+  <li>to make adding a model file more quickly select the digi_sword.json file, press cmd+c and then cmd+v to copy and paste it.</li>
+  <li>The digi_sword.json file is a model file for tools, there are many other similar json model files that can be copied as well.</li>
+  <li>Rename the file to match your new item, only use lowercase letters and underscores instead of
+  spaces. This guide uses my_tool but you should use your own unique item name</li>
+  <li>double click into this new my_tool.json file and change the texture location to match your new item.</li>
+
+  <pre>{
+     "parent": "item/handheld",         
+     "textures": {                       
+         "layer0": "dm:items/my_tool"   
+     } 
+  } 
+  </pre>
+
+</ol>
+
+<h2>Tool Lang</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/lang/en_us.lang</li>
+  <li>Add in a new line of code at the bottom</li>
+  <li>type "Item.my_tool.name= My New Tool"</li>
+  <li>Everything after the = sign in this line of code will show up as the name of this item in minecraft</li>
+  <li>This is only the display name, we will still use my_item as name we refer to the item as in our code</li>
+  <pre>
+  item.my_tool.name=My New Tool
+  </pre>
+</ol>
+
+<h2>Initialize</h2>
+<p>Navigate to /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiItems.java</p>
+
+<h3>Creating a tool Material</h3>
+<p>A tool material gives a tool stats and is normally used for sets of tools but can be used for individual tools as well.</p>
+<p>You don't need to create a new tool Material for every tool, you can use previouse ones.</p>
+<p>Under the MATERIAL_DIGI code you can create a very similar line of code but replace the names and arguments.</p>
+<pre>
+  public static final ToolMaterial MATERIAL_NEW = EnumHelper.addToolMaterial("material_new", 3, 500, 20.0F, 3.0F, 10);
+</pre>
+<p>addToolMatieral takes 6 arguments; resource name, harvest level,durability, speed, damage and enchantability</p>
+<ul>
+  <li>Resource Name: (String) Name of the material.</li>
+  <li>Harvest Level:(Integer) Ability for the tool to recieve the item from a certain level ore. 0 is the lowest, 3 is the highest</li>
+  <li>Durability: (Integer) The amount of times the tool can be used before it breaks.</li>
+  <li>Speed: (Float) How quickly the tool breaks blocks it is designed for.</li>
+  <li>Damage: (Float)Base damage for items, swords will do a bonus 3-4 damage.</li>
+  <li>Enchantability: (Integer) Likelihood that when the item is enchanted, it will recieve better effects. 0 is low and 500 is very high.</li>
+</ul>
+
+
+<h3>Initialize Tool</h3>
+<p>By looking at how the other Digi Tools are created you can use the same pattern to initialize your own tools.</p>
+
+<ol>
+  <li>Scroll to the bottom where it says "//New Items"</li>
+  <li>Add this new line of Java Code "public static final ItemSword MY_TOOL = new ToolSword("my_tool");"</li>
+  <li>You can use replace Sword with Pickaxe, Hoe, Axe or Spade.</li>
+  <li>These tools require 2 arguments, The tool material that we created earlier and the resource name for the tools</li>
+  <li>In this code we are creating a new ItemSword called MY_TOOL which is a clone of the ToolSword()</li>
+<pre>public static final ItemSword MY_TOOL = new ToolSword("my_tool", MATERIAL_NEW);</pre>
+  <li>ToolSword() holds all of the information for adding this item into minecraft and connecting
+  the texture and model files to this item. It also gives the item sword specific code like hitting mobs.</li>
+  <li>The other Tool base classes apply the basic tool abilities they are associated with.</li>
+  <li>Public static final are identifiers which describe how this new instance or clone of the new tool can be
+  interacted with.</li>
+</ol>

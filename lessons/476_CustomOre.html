@@ -1,0 +1,75 @@
+<h1>Lesson 476 Custom Ore</h1>
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 1st-8th</li>
+  <li>Skill Level Beginner</li>
+  <li>https://www.dropbox.com/sh/f3yyactzdxygkrk/AAD_fVU6xlu6sgU8DmbKjTb_a?dl=0</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>To make custom blocks in minecraft we are going to be adding in our own block designs into
+the minecraft modding workspace with eclipse. We are going to be adding onto the Digi Mod which already
+has a bunch of basic mods that we can change and add code to. Our blocks</p>
+
+<h2>Activity</h2>
+<p>Have students think of any object in the world. Then try to write down the properties these items have. For example...</p>
+<ul>
+  <p><u>Lamp</u></p>
+  <li>Emits light</li>
+  <li>Cloth top</li>
+  <li>Glass base</li>
+  <li>Not smelly</li>
+</ul>
+
+<h2>Create Block Texture</h2>
+<p>Use the create Create Block Texture guide to create a new block texture.</p>
+
+<h2>Replace Block Texture</h2>
+<p>Use the replace block texture guide to replace the texture of the digi_block.png</p>
+
+<h2>Rename the Block</h2>
+<p>Use the Naming Items and Blocks guide to change the name of the digi_block within the en_us.lang file.</p>
+<p>Feel free to use special color codes for more unique names here.</p>
+
+<h2>Test your Block</h2>
+<ul>
+  <li>Press the run button at the top left to test your block to see if it has been added to the minecraft mod.</li>
+  <li>Students should create or join a single player, creative mode world.</li>
+</ul>
+
+<h2> DigiBlock Class</h2>
+
+<p>The class is a file that holds all of the information for how our Block should act.</p>
+<ul>
+  <li>Navigate to the Java folder to find and open java/com/digitaladventures/digimod/blocks/DigiBlock.java</li>
+  <li>This DigiBlock class is extending another class or file called BlockBase which has all the code needed for building a basic block.</li>
+  <li>Extending is much better than recoding our entire block because we can use code already created by minecraft programmers.</li>
+  <li>The super() method tells this block to use the same constructor as the Base Block. It requires the name, and  block material.</li>
+</ul>
+
+<h2>Change Block Properties</h2>
+<p>Next we are going to be adjusting the properties of our block. We are going to do this by running some methods
+inside of the constructor of our Blocks class</p>
+<p>A method is a task an object will do when we type it in. A constructor is a section of code that will run once at the creation
+of a class (it has the same name of the class in Java).</p>
+<p>The methods inside our constructor have green slashes next to them. This means that they are "commented out". Commenting with two
+slashes means that the words after are to be ignored by the program and minecraft. This is how you can write notes in your code. This is also
+a great way to disable or enable code quickly.</p>
+<ul>
+  <li>  <code>setSoundType(SoundType.METAL);</code>   This method requires a SoundType, you can see the SoundType options by deleting ".METAL" and thentyping in "." </li>
+  <li><code>setHardness(5.0F);</code> This method is how hard the block is to break with your player, This requires a number which ends with F for Float. Floats are decimal point numbers.</li>
+  <li><code>setResistance(15.0F);</code> This sets how resistant your block is to explosions.</li>
+  <li><code>setHarvestLevel("pickaxe", 2);</code> This sets the level of pickaxe needed to get the item from this block.</li>
+  <li><code>setLightLevel(1.0F);</code> This sets the light emission of your block, 1.0F is the highest 0.0F is the lowest.</li>
+  <li><code>setLightOpacity(1);</code> This sets how much light the block will block.</li>
+  <li><code>setBlockUnbreakable();</code> This method requires no parameters, it simply sets the block unbreakable (unless you are in creative mode)</li>
+</ul>
+
+
+<h2>Test your Block</h2>
+<ul>
+  <li>Press the run button at the top left to test your block to see if it has been added to the minecraft mod.</li>
+  <li>Students should create or join a single player, creative mode world.</li>
+  <li>You can switch to survival mode by typing "/gamemode s" while in the game.</li>
+  <li>Try breaking it in survival with a pickaxe.</li>
+</ul>

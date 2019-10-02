@@ -1,0 +1,32 @@
+<h1>Naming Items and Blocks</h1>
+
+<p>Naming items, blocks and creative tabs can be done to change the appearance of the name input
+the game of minecraft. It will not change how we reference the name in our coding environment.</p>
+
+<h2>Editing the Language File</h2>
+
+<ol>
+  <li>Locate the Language file by navigating to and opening MDKExample/src/main/resources/assets.dm/en_us.lang</li>
+  <li>Find the name of the item you are replacing. If you are replacing a Sword, find  <pre>item.digi_sword.name</pre></li>
+  <li>Replace everything after the = sign with what you would like to have displayed in the game</li>
+</ol>
+
+
+<h2>Creating a new item or block name</h2>
+<ol>
+  <li>Navigate to and open MDKExample/src/main/resources/assets.dm/lang/en_us.lang</li>
+  <li>Add in a new line of code at the bottom</li>
+  <li>type "item.my_item.name= My New Item" for an item</li>
+  <li>type "tile.my_block.name= My New Block" for a block</li>
+
+  <li>Everything after the = sign in this line of code will show up as the name of this item in minecraft</li>
+  <li>This is only the display name, we will still use my_item as name we refer to the item as in our code</li>
+  <pre>
+  item.my_item.name= My New Item
+  tile.my_block.name= My New Block
+  </pre>
+</ol>
+
+<h2>Advanced Naming options</h2>
+<p>You can use minecraft formatting codes for more advanced naming options!</p>
+<p> <a href="https://minecraft.gamepedia.com/Formatting_codes">https://minecraft.gamepedia.com/Formatting_codes</a></p>

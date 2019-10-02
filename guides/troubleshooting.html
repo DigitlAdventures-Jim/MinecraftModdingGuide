@@ -1,0 +1,46 @@
+<h1>TroubleShooting</h1>
+
+
+<h2>Editor Found Errors</h2>
+<p>Errors in Java can be found many times with the red underlines, or red x bubbles on the left
+and red lightbulbs</p>
+<p>Red lightbulbs indicate that eclipse has a suggestion, this can many times fix type mismatches,
+typo's or suggest libraries to import.</p>
+<p>CMD+shift+o is the fastest way to import libraries. As a rule of thumb the libraries
+   we choose (when there are more than one option) are the ones associated with net.minecraft</p>
+
+
+<h2>Reading Console Errors</h2>
+<p>The console log is a great way to find errors as well. In some cases we may try
+to run code that will break minecraft while it is running or loading.</p>
+<p>When an error does occur, Java will tell us the stacktrace at the time of the error,
+this is usually very long, but in almost all cases we can find a few files that are DigiMod files
+associated with the error.</p>
+
+<h2>Print to the Console</h2>
+<p>We can use <pre>System.out.print("Display text here")</pre> to display text to see if minecraft has
+passed certain conditions, or we can print out objects, variables or anything else which may be helpful
+in spotting an error.</p>
+
+
+<h2>Researching online</h2>
+<p>Many people use minecraft forge to create mods and there are many helpful resources you can review.</p>
+<p>Although 1.12.2 has some differences with earlier versions, many of the functions still work the same, so trying older
+  techniques is viable.</p>
+
+<h2>Issues with Textures</h2>
+<p>This is almost always caused by a mispelled or misplaced filename.</p>
+<p>You can also make sure the .json files are correctly written.</p>
+<p>Occasionally you will see this happen with incorrect registration within the init Java files.</p>
+
+<h2>Nothing is happening when I use my item when there should be something happening.</h2>
+<p>If an Item or Block has an event that is supposed to trigger function but it does not, it
+is many times a typo or error in the Event Handler. A mispelling in the Event will not cause an error
+in minecraft and it will simply be ignored when many other errors will cause a crash, or cause minecraft
+to fail when loading.</p>
+
+<h2>Reading Minecraft Code</h2>
+<p>When researching ways to program your items you can also peek into the code for minecraft. You can do this
+by highlighting a class name, right clicking and selecting open declaration, open call heirarchy, open type hierarchy</p>
+
+<h2></h2>

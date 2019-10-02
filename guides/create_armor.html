@@ -1,0 +1,98 @@
+<h1>Create Armor</h1>
+<p>You will want to create an armor texture and armor items using this guide.<a href="create_armor_texture.html"></a> Create Armor Texture</p>
+<p>In this guide I will be making a new dirt armor, but students should design their own ideas.</p>
+<h2>Add Armor Set Textures</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/textures/models/armor.</li>
+  <li>Drag your armor textures into the armor folder either on top of any of the files in the folder, or
+    on the actual folder.
+  </li>
+  <li>Make sure your armor ends in _layer_1 and _layer_2 so minecraft knows which one to use
+  as the top and bottom layer.</li>
+</ol>
+
+<h2>Add Armor Set Items</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/textures/items.</li>
+  <li>Drag your four armor item textures into the items folder either on top of any of the files in the folder, or
+    on the actual folder.
+  </li>
+</ol>
+
+<h2>Armor Item Models</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/models/items.</li>
+  <li>to make adding a model file more quickly select the digi_food.json file, press cmd+c and then cmd+v to copy and paste it.</li>
+  <li>The digi_food.json file is the most basic model file, there are many other similar json model files that can be copied as well.</li>
+  <li>Rename the file to match your new armor item, only use lowercase letters and underscores instead of
+  spaces. This guide uses dirt_helmet</li>
+  <li>double click into this new dirt_helmet.json file and change the texture location to match your new item.</li>
+
+  <pre>{
+     "parent": "item/generated",
+     "textures": {
+         "layer0": "dm:items/dirt_helmet"
+     }
+  }
+  </pre>
+
+  <li>You will do this exact process for each armor item (helmet, chestplate, leggings and boots)</li>
+
+</ol>
+
+<h2>Item Lang</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/lang/en_us.lang</li>
+  <li>Add in a new line of code at the bottom</li>
+  <li>type "Item.dirt_helmet.name= Dirt Helmet"</li>
+  <li>Everything after the = sign in this line of code will show up as the name of this item in minecraft</li>
+  <li>This is only the display name, we will still use dirt_helmet as name we refer to the items resrouces.</li>
+  <pre>
+  item.dirt_helmet.name=Dirt Helmet
+  item.dirt_chestplate.name=Dirt Chestplate
+  item.dirt_leggings.name=Dirt Leggings
+  item.dirt_boots.name=Dirt Boots
+  </pre>
+</ol>
+
+<h2>Initialize</h2>
+<h3>Armor Material</h3>
+<p>Armor materials are objects we attach to armor items so that they connect to our texture and to different
+stats we want to give to the armor.</p>
+<ol>
+  <li>Navigate to /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiItems.java</li>
+  <li>Scroll to the top where it says "//Materials"</li>
+  <li>Copy an ArmorMaterial that already exists, this will make coding much quicker.</li>
+  <li>Paste it just below but make some changes to make it match your new armor.</li>
+  <li><pre>	public static final ArmorMaterial ARMOR_MATERIAL_DIRT = EnumHelper.addArmorMaterial("armor_material_dirt", Reference.MOD_ID + ":dirt", 14,
+			new int[] {2, 5, 7, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F);
+</pre></li>
+<li>The parameters for addArmorMaterial are listed as the following</li>
+  <ol>
+    <li>String: name of the resource in minecraft commands</li>
+    <li>String: resource location for the armor textures</li>
+    <li>Integer: durability</li>
+    <li>Array of Intergers: damage reduction for helmet, chestplate, leggings, boots.</li>
+    <li>Integer: enchantability</li>
+    <li>SoundEvent: Sound played when put onto player</li>
+    <li>Float: toughness multiplier</li>
+  </ol>
+</ol>
+
+<h3>Armor Items</h3>
+<p>Armor items are initialized much like any other item except that they have three extra parameters, armor material, layer and armor slot.</p>
+
+<ol>
+  <li>Copy and paste the 4 Armor items already being initialized to speed up the process.</li>
+  <li>You will need to make a few changes for these items to work with your new dirt armor.</li>
+  <li><pre>	  public static final Item DIGI_HELMET = new ArmorBase("digi_helmet", ARMOR_MATERIAL_DIRT, 1, EntityEquipmentSlot.HEAD);
+	 public static final Item DIRT_CHESTPLATE = new ArmorBase("dirt_chestplate", ARMOR_MATERIAL_DIRT, 1, EntityEquipmentSlot.CHEST);
+	 public static final Item DIRT_LEGGINGS = new ArmorBase("dirt_leggings", ARMOR_MATERIAL_DIRT, 2, EntityEquipmentSlot.LEGS);
+	 public static final Item DIRT_BOOTS = new ArmorBase("dirt_boots", ARMOR_MATERIAL_DIRT, 1, EntityEquipmentSlot.FEET);
+	</pre></li>
+
+  <li>The first parameter of each item should just be the resource/texture name.</li>
+  <li>The material parameter will be the one we just created.</li>
+  <li>The layer of 1 means the armor will stick out of your player like a helmet or shoulderpads, layer of 2 means it will be flush to the player like a t-shirt or pants.</li>
+  <li>The final new parameter is the slot the armor belongs to.</li>
+</ol>

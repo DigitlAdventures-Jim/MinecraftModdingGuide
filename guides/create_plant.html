@@ -1,0 +1,136 @@
+<h1>Create Plant</h1>
+
+<h2>Plant Textures</h2>
+<p>Use the Create Plant Texture guide to create your seed and plant textures.</p>
+<p><a href="guides/create_plant_texture.html">Create Plant Texture</a> </p>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/textures/blocks.</li>
+  <li>Drag your plant textures into the blocks folder either on top of any of the files in the folder, or
+    on the actual folder.
+  </li>
+  <li>You will next need to grab the plant texture that will appear when you are holding the plant as an item.</li>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/textures/items.</li>
+  <li>Drag your first plant texture into the items folder either on top of any of the files in the folder, or
+    on the actual folder.</li>
+</ol>
+
+<h2>Plant Seed Texture</h2>
+<p>The seed will be an item that will turn into your plant when placed on farmland.</p>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/textures/items.</li>
+  <li>Drag your seed texture into the items folder either on top of any of the files in the folder, or
+    on the actual folder.</li>
+  <li>It will prompt you to copy or link the file into the folder, you will almost always want to copy.</li>
+</ol>
+
+
+<h2>Plant Item Model</h2>
+<p>The Plant Item Model for a Plant is what the Plant looks like while being held.</p>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/models/item.</li>
+  <li>to make adding a model file more quickly select the digi_plant.json file, press cmd+c and then cmd+v to copy and paste it.</li>
+  <li>The digi_plant.json file is the most basic item model file for handheld items.</li>
+  <li>Rename the file to match your new block, only use lowercase letters and underscores instead of
+  spaces. This guide uses my_plant but you should use your own unique plant name</li>
+  <li>Double click into this new my_plant.json file and change the texture location to match your plant texture you placed into the textures/items folder.</li>
+
+  <pre>{
+    {
+       "parent": "item/handheld",
+       "textures": {
+           "layer0": "dm:items/my_plant3"
+       }
+    }
+
+  </pre>
+
+</ol>
+
+<h2>Seed Item Model</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/models/items.</li>
+  <li>to make adding a model file more quickly select the digi_food.json file, press cmd+c and then cmd+v to copy and paste it.</li>
+  <li>The digi_food.json file is the most basic model file, there are many other similar json model files that can be copied as well.</li>
+  <li>Rename the file to match your new item, only use lowercase letters and underscores instead of
+  spaces. This guide uses my_item but you should use your own unique item name</li>
+  <li>double click into this new my_seed.json file and change the texture location to match your new item.</li>
+
+  <pre>{
+     "parent": "item/generated",
+     "textures": {
+         "layer0": "dm:items/my_seed"
+     }
+  }
+  </pre>
+
+</ol>
+
+<h2>Plant Block Models</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/models/block.</li>
+  <li>To make adding a model file faster select the digi_plant.json file, press cmd+c and then cmd+v to copy and paste it.</li>
+  <li>The digi_plant.json file is a Crop model file for Blocks.</li>
+  <li>Rename the file to match your new plant, only use lowercase letters and underscores instead of
+  spaces.</li>
+  <li>double click into this new my_plant.json file and change the texture location to match your new plant.</li>
+  <li>block/crop is the key to this script as it makes the texture displays like a crop in the ground.</li>
+  <pre>
+    {
+   "parent": "block/crop",
+   "textures": {
+       "crop": "dm:blocks/digi_plant0"
+     }
+    }
+  </pre>
+
+</ol>
+
+<h2>Add a BlockState file</h2>
+<p>Block states are ways a block can look differently in different situations in minecraft. With plants we have
+different stages of growth called ages.</p>
+
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/blockstates</li>
+  <li>Copy and past the digi_plant.json file, or create a new .json file with the code below.</li>
+  <li>this json markup code is to display the block model based on it's age.</li>
+  <pre>
+    {
+    "variants": {
+        "age=0": { "model": "dm:my_plant0" },
+        "age=1": { "model": "dm:my_plant1" },
+        "age=2": { "model": "dm:my_plant2" },
+        "age=3": { "model": "dm:my_plant3" },
+        "age=4": { "model": "dm:my_plant4" },
+        "age=5": { "model": "dm:my_plant5" },
+        "age=6": { "model": "dm:my_plant6" },
+        "age=7": { "model": "dm:my_plant7" }
+    }
+  }
+    </pre>
+</ol>
+
+<h2>Block Lang</h2>
+<ol>
+  <li>Navigate to MDKExample/src/main/resources/assets.dm/lang/en_us.lang</li>
+  <li>Add in a new line of code at the bottom</li>
+  <li>type "Item.my_item.name= My New Item"</li>
+  <li>Everything after the = sign in this line of code will show up as the name of this item in minecraft</li>
+  <li>This is only the display name, we will still use my_item as name we refer to the item as in our code</li>
+  <pre>
+  tile.my_plant.name=My Plant
+  item.my_seed.name=My Seed
+  </pre>
+</ol>
+
+<h2>Initialize</h2>
+
+<ol>
+  <li>Navigate to /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiItems.java</li>
+  <li>Scroll to where it says "//New Blocks"</li>
+  <li>Add this new line of Java Code "public static final Item MY_BLOCK = new BlockBase("my_block");"</li>
+  <li>In this code we are creating a new Item called MY_BLOCK which is a clone of the BlockBase</li>
+  <li>BlockBase holds all of the information for adding this block into minecraft and connecting
+  the texture and model files to this item.</li>
+  <li>Public static final are keywords which describe how this new instance or clone of the BaseBlock can be
+  interacted with.</li>
+</ol>
