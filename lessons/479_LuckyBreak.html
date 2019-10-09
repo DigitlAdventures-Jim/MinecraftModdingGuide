@@ -1,0 +1,103 @@
+<h1>Lucky Break</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 1st-8th</li>
+  <li>Skill Level Intermediate</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>We are going to be creating a mod where your player can get lucky! We will be
+creating a custom event where when we break any block in the game a lucky thing may occur
+at random.</p>
+
+<h2>Activity</h2>
+
+<p>Write down a number between 1 and 100. Have each students win a 3d print or small prize if they can guess it within three tries.</p>
+
+
+
+
+<h2>Find DigiEvents</h2>
+<ol>
+
+<li>Navigate to src/main/java/com/digitaladventures/digimod/DigiEvents.java</li>
+
+<li>Start by subscribing a new event within this class file. When we subscribe to an event it
+  allows this code to listen for and trigger once the event associated with it occurs.</li>
+</ol>
+
+<h2>Create LuckyBreak Event</h2>
+<ol>
+  <li>Next create our new listening event called LuckyBreak, which will be passing through the BreakEvent
+  that we can give an instance/temporary name of event</li>
+  <li>event will now hold information each time we break a block. including the position and the player who
+  broke the block.</li>
+
+  <pre>
+    @SubscribeEvent
+    public void LuckyBreak( BreakEvent event){
+
+    }
+  </pre>
+
+<li>Next we want to create a random number. We can do this by creating a random
+  number generator object and calling it rand.</li>
+<li>Create a variable and set it to a random number between 0 and 100 by
+  using rand.nextInt(101). 101 can be changed to any integer.</li>
+<li>Then we will use if statement to check what number it is. If the number is
+  very high, we will get a prize dorpped to our player.</li>
+<li>event.getPlayer() will grab the player who broke the block, and dropItem drops
+  the item next to them. "Items" is a class you can use to grab minecraft items.
+  If you want to drop a modded Item you could use DigiItems. If you want to use a Block you'll need to use
+  "Items.getItemFromBlock(Blocks.NAMEOFBLOCK)" or "Items.getItemFromBlock(DigiBlocks.NAMEOFBLOCK)".</li>
+<pre>
+  if(effect_number>99) {
+    event.getPlayer().dropItem(Items.DIAMOND,1);
+  }
+</pre>
+
+<h2>Intermediate</h2>
+<p>Try to create an if statement with a larger range and a less desirable award.</p>
+<pre>
+  if(effect_number>90 && effect_number<99) {
+    event.getPlayer().dropItem(Items.APPLE,1);
+  }
+</pre>
+
+<h2>Advanced</h2>
+<p>Create if statements so that certain effects only apply to certain blocks using event.getState().getBlock().</p>
+<pre>
+  if(effect_number>90 && effect_number<99) {
+      if(event.getState().getBlock() == Blocks.DIRT) {
+    event.getPlayer().dropItem(Items.APPLE,1);
+      }else {
+      event.getPlayer().dropItem(Items.POTATO,1);
+      }
+  }
+</pre>
+
+
+<h2>Completed Code</h2>
+<pre>
+  @SubscribeEvent
+     public void LuckyBreak( BreakEvent event){
+     	Random rand = new Random();
+     	int effect_number = rand.nextInt(101);
+
+     	if(effect_number>99) {
+     		event.getPlayer().dropItem(Items.DIAMOND,1);
+     	}
+     	if(effect_number<2) {
+     		event.getPlayer().addPotionEffect(new PotionEffect(MobEffects.POISON,100,4));
+     	}
+     	if(effect_number>90 && effect_number<99) {
+         	if(event.getState().getBlock() == Blocks.DIRT) {
+     		event.getPlayer().dropItem(Items.APPLE,1);
+         	}else {
+         	event.getPlayer().dropItem(Items.POTATO,1);
+         	}
+     	}
+
+     }
+</pre>
