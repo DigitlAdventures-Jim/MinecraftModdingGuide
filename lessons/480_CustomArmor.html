@@ -1,0 +1,51 @@
+<h1>480 Custom Armor</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 1st-8th</li>
+  <li>Skill Level Basic</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>In this project we will be designing custom armor using a model texturing program
+and then changing attributes for the armor.</p>
+
+<h2>Activity</h2>
+
+<p>Students should write down ratings for their favorite hero or role model.
+  They should rate their strength, intelligence and kindness from 1-10. Students can share their answers with each other.</p>
+
+<h2>Create Armor Texture</h2>
+<p>Use the <a target="_blank" href="../guides/create_armor_texture.html">Create Armor Texture Guide</a> to create a new armor. If designs are completed quickly you can also design the 4 16x16px Items that represent the armor.</p>
+
+<h2>Replace digi_layer_1.png and digi_layer_2.png Texture</h2>
+<p>Use the <a target="_blank" href="../guides/replace_armor_texture.html">Replace Armor Guide</a> to replace the digi_armor.</p>
+<p>You should make sure to replace the digi armor names in the en_us.lang file as well.</p>
+
+<h3>Intermediate Challenge</h3>
+<p><a target="_blank" href="../guides/replace_item_texture.html">Replace the Items</a> that represent the armor (digi_helmet, digi_leggings, digi_chestplate, digi_boots) with your own.</p>
+
+<h2>Test your project</h2>
+<p>Make sure the amor can be worn and displays correctly. fn+f5 will change the players view from 1st person.</p>
+
+<h2>Advanced Challenge</h2>
+<p>As an advanced challenge try adjusting the values for the armor.</p>
+<ol>
+  <li>Navigate and open the file /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiItems.java</li>
+  <li>Your armor material is created at the line of code that looks like</li>
+  <pre>public static final ArmorMaterial ARMOR_MATERIAL_DIGI = EnumHelper.addArmorMaterial("armor_material_digi", Reference.MOD_ID + ":digi", 14,
+			new int[] {2, 5, 7, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F);
+  </pre>
+  <li>This is armor material for the Digi Armor we are replacing.</li>
+  <li>addArmorMaterial() is the key method that we are going to be using to customize our armor stats. The parameters are ordered and explained below.</li>
+  <ul>
+    <li> <a target="_blank" href="../guides/glossary.html#string">String</a> name : This is the material name <strong>Do not change this</strong></li>
+    <li> <a target="_blank" href="../guides/glossary.html#string">String</a> textureName : This is the name of file location of our armor set textures <strong>Do not change this</strong> </li>
+    <li> <a target="_blank" href="../guides/glossary.html#int">int</a> durability : This is how long the armor will last when hit by enemies </li>
+    <li> <a target="_blank" href="../guides/glossary.html#array">int[]</a> reductionAmounts : This is a list of the protection each armor provides helmet,chestplate,leggings and then boots </li>
+    <li> <a target="_blank" href="../guides/glossary.html#int">int</a> enchantability : The chances you'll recieve great enchantments for your armor </li>
+    <li> SoundEvent soundOnEquip : The sound your armor makes when you put it on. Must use a "SoundEvents.SOUNDEVENTNAME"</li>
+    <li> <a target="_blank" href="../guides/glossary.html#float">float</a> toughness : The amount of damage deflected before armor protection occurs. (Like an added shell to your whole armor set.)</li>
+  </ul>
+
+</ol>
