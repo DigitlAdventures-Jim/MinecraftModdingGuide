@@ -7,6 +7,11 @@ As of 1.12, recipes have become data-driven via external JSON files. This allows
 Recipes can be shaped or shapeless, producing a specific item. As of 17w13b, only crafting table recipes are customizable. A new command, recipe, has been introduced to supplement the files.
 Recipes use the <a target="_blank" href="http://json.org/" target="">JSON format</a> to store the recipe in external files.
 </p>
+<p>Although not the exact version (does not include data keys when needed), this crafting recipe creator is a quick way to create recipes and figure out the name for different blocks and items for json recipes. <a href="https://crafting.thedestruc7i0n.ca/">https://crafting.thedestruc7i0n.ca/</a></p>
+
+<p>Make your way to the src/main/resources/assets/dm/recipes folder in your workspace, then right click on the recipes
+   package/folder to create a new json file. The name of this file does not really matter.</p>
+
 <h2>JSON Structure</h2>
   <hr>
 <p>
@@ -62,7 +67,7 @@ The optional "data" number specifies a metadata of the item. The following eithe
     "data": 2
 }</pre>
 <p>
-When used in a  key or ingredient, not specifying this tag or giving it a value of 32767 will indicate that the metadata value can be anything. When used in a result, it will set the item's metadata to the value specified, defaulting to 0 when not specified.
+When used in a key or ingredient, not specifying this tag or giving it a value of 32767 will indicate that the metadata value can be anything. When used in a result, it will set the item's metadata to the value specified, defaulting to 0 when not specified.
 <strong>3. "count"</strong>
 The optional "count" number specifies the number of items in the stack, defaulting to 1 when not specified. This cannot be used in a key or ingredient, only in a result. The following creates an item with a stacksize of 16.
 

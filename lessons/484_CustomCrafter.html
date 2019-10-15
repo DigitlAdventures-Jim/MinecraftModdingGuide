@@ -1,0 +1,49 @@
+<h1>484 Custom Crafter</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 1st-8th</li>
+  <li>Skill Level Basic</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>In this project we will be creating our own crafting recipes using JSON files. JSON files are used often with
+  programming to send data in an organized way.</p>
+
+<h2>Activity</h2>
+
+<p>Students should draw a 3/3 grid (similar to tic tac toe), and then write ingredients into them to create a new recipe for minecraft.</p>
+
+
+<h2>Create a Shaped Recipe</h2>
+<p>Using the <a  target="_blank"  href="../guides/create_recipe.html">Create recipe guide</a> walk through the creation of a custom shaped recipe. </p>
+<p>You can use this json code below as an example of how to turn dirt into diamonds.</p>
+<p>The "data": key is needed for many blocks or items which use meta data like wool or dyes. Using 32767 for the data value will let you
+use any type of wool or dye.</p>
+
+<pre>
+
+  {
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+          "DDD",
+          "DDD",
+          "DDD"
+      ],
+      "key": {
+          "#": {
+              "item": "minecraft:dirt",
+              "data":0
+          }
+      },
+      "result": {
+          "item": "minecraft:diamond",
+          "count": 1
+      }
+  }
+
+</pre>
+
+<h2>Intermediate Smelting!</h2>
+<p>Smelting in 1.12 is completed using Java code within a recipes class in our workspace.
+You can use the  <a target="_blank"  href="../guides/create_smelting_recipe.html">Create Smelting Recipe Guide</a> to have students create custom furnace recipes.</p>
