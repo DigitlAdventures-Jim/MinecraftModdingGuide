@@ -1,0 +1,46 @@
+<h1>485 Custom Plants</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 5th-8th</li>
+  <li>Skill Level Intermediate</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>In this project we will be creating our own custom plant by replacing and adjusting the digi_plant.
+This will involve the changing of up to 7 plant model textures, a seed item and optionally a dropped item.</p>
+
+<h2>Activity</h2>
+
+<p>Create a very simple animation in piskel app to make it looke like a ball or dot is moving.
+Show students how to use the onion skin option so that they can view previous frames.</p>
+
+<h2>Create 7 Plant Model Textures and Seed</h2>
+<p>Using Piskel app and the .zip file export, export an animation of your plant growing, starting
+with a very tiny plant to one that fills up the animation frame.</p>
+<p>You can use the <a target="_blank" href="../guides/create_plant_texture.html">Create Plant Texture Guide</a> for steps
+  on designing the model textures and seed texture.</p>
+
+<h2>Replace Plant and Seed Textures</h2>
+<p>You can use the <a target="_blank" href="../guides/replace_plant_texture.html">Replace Plant Texture Guide</a>
+for steps on replacing the plant and seeds as well as working with the plant model files and blockstates if necesarry.</p>
+<p>This would be a good time to test your mod.</p>
+
+<h2>Changing Plant Drops</h2>
+<p>In minecraft once a plant grows to the last stage you can collect the drop.
+a quick way to grow a plant is by right clicking it with bonemeal.</p>
+<ol>
+  <li>Navigate to and open /MDKExample/src/main/java/com/digitaladventures/digimod/blocks/DigiPlant.java</li>
+  <li>Since a plant is a block, you can adjust or add to some of it's properties like hardess and light opacity.</li>
+  <li>Make changes to the code below so that the return is the item you wish your plant to drop.</li>
+  <pre>
+    @Override
+	     protected Item getCrop() {
+		        return DigiItems.DIGI_FOOD;
+	    }
+	</pre>
+</ol>
+
+<h2>Advanced: Create new drop Item</h2>
+<p>Use the <a target="_blank "href="../guides/create_item.html">Create Item Guide</a> to design
+a new item that your plant should drop.</p>
