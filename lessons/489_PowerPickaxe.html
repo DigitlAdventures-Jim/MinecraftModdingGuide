@@ -1,0 +1,88 @@
+<h1>489 Power Pickaxe</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 5th-8th</li>
+  <li>Skill Level Advanced</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>Today we will be creating a pickaxe which is extra powerful having the ability
+to break through many blocks at once using for loops.</p>
+
+<h2>Activity</h2>
+<p>The activity today should show student in slow motion how nested for loops work.</p>
+<ol>
+  <li>Draw a 4x4 grid on the board.</li>
+  <li>If we want a computer to draw a cicle in each of these squares we could
+  tell it to draw a circle 16 times. This means we would have to give it 16 instructions.</li>
+  <li>This might be doable here, but what if we wanted 1,000,000 circles? That would be impossible for us!</li>
+  <li>We can use loops instead to speed up this process.</li>
+  <li>We can tell the computer to repeat the action of drawing a circle across 4 times.</li>
+  <li>Then we can tell the computer to repeat that whole action 4 more times going downward.</li>
+  <li>4 times 4 is 16!</li>
+</ol>
+
+
+<h2>Create custom pickaxe tool</h2>
+<p>Use the <a target="_blank" href="../guides/create_item_texture.html">Create Item Texture </a> to create a new pickaxe design.</p>
+<p>Use the <a target="_blank" href="../guides/create_item.html">Create Item Guide</a> to create a new Pickaxe in minecraft</p>
+
+<h2>Create Custom Class</h2>
+  <p>After we create the Initialize code we will want to change the class of the Pickaxe.</p>
+  <ol>
+    <li>Your Initialize code should read...</li>
+    <pre>public static final ItemPickaxe POWER_PICKAXE = new PowerPickaxe("power_pickaxe", MATERIAL_DIGI);</pre>
+    <li>Click the error lightbulb on the left of this line of code to create a new class automatically. </li>
+    <li>In the popup window you will want to change the package name to com.digitaladventures.digimod.item then press finish.</li>
+    <li>This should open up a new file.</li>
+  </ol>
+
+<h2>Edit Custom Class</h2>
+  <p>We will now make sure this class works like a pickaxe but with an added ability.</p>
+
+  <ol>
+    <li>First, extend the ToolPickaxe class instead of ItemPickaxe. ToolPickaxe holds a lot of basic code needed to setup the pickaxe in our mod.</li>
+    <li>You should see an error on the left side, you want to click on that and select "add constructor".</li>
+    <li>Next we will add add a method that will be activated when a player breaks a block. You can copy and paste
+    this from the src/main/java/com/digitaladventures/digimod/items/base/ItemBase.java file.</li>
+    <li>To break an extra block we can use the script below which destroys a block at the position of the block that was broken (not that helpful but we will adjust this soon).
+    The "true" argument is to make sure drops occur on these bonus destroyed block.</li>
+    <pre>worldIn.destroyBlock(pos, true);</pre>
+  </ol>
+
+<h2>Creating a for Loop</h2>
+  <p>We now want to wrap 3 for loops around this block breaking script.</p>
+  <ol>
+    <li>First adjust the pos value of the destroyBlock method to pos.add(x,y,z). add(x,y,z) will translate the block position by a certain amount.</li>
+    <li>This will allow us to plug numbers from our for loops into this to break other blocks around the original broken block. </li>
+    <li>We want to create a loop which will make the broken block the center. This means each loop must start at a -3 and end at 3.</li>
+    <li>Start with the x loop. <pre>for (int x=-3; x<3; x++){}</pre> with the block breaking script in between.</li>
+    <li>Then wrap a y loop written nearly the same way but with a y variable.</li>
+    <li>Then wrap a z loop written nearly the same way but with a z variable.</li>
+    <li>Return false at the end of the onBlockDestroyed method. I believe this controls wether or not the item durability is reduced.</li>
+  </ol>
+
+<h2>Finished Code</h2>
+  <pre>
+    public class PowerPickaxe extends ToolPickaxe {
+
+    	public PowerPickaxe(String name, ToolMaterial material) {
+    		super(name, material);
+    		// TODO Auto-generated constructor stub
+    	}
+
+        public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase p)
+        {
+        	for (int x=-3; x<3; x++) {
+        		for (int y=-3; y<3;y++) {
+        			for (int z=-3; z<3;z++) {
+        			worldIn.destroyBlock(pos.add(x, y, z), true);
+        			}
+        		}
+        	}
+            return false;
+        }
+
+    }
+  </pre>
