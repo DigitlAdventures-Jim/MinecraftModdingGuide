@@ -1,0 +1,64 @@
+<h1>490 Modded Bow</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 5th-8th</li>
+  <li>Skill Level Basic/Intermediate</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>Today we will be modding a bow and adding special enchantments to them in what is known
+  as the constructor.</p>
+
+<h2>Activity</h2>
+<p>A class in programming is a template for the creation of things. We can also extend classes which allows us to build upon pre-existing things. </p>
+<p>Can you think of some "Classes" that these objects are built upon.</p>
+<ol>
+  <li></li>
+  <li>Spork: Spoon and Fork</li>
+  <li>Pikachu: Pokemon, Lightning, Rat</li>
+  <li>Chocolate Ice Cream: Ice Cream, Milk, Chololate</li>
+</ol>
+
+<h2>Create Bow Texture</h2>
+<p>Use the <a target="_blank" href="../guides/create_item_texture.html">Create Item Texture </a>Guide to create a Bow
+texture that is pointing to the top left.</p>
+
+<h2>Replace the digi_bow texture</h2>
+<p>Use the <a target="_blank" href="../guides/replace_item_texture.html">Replace Item Texture</a> guide to replace the digi_bow texture in our mod.</p>
+
+<h2>Add new Abilities</h2>
+<p>Navigate to and open src/main/java/com/digitaladventures/digimod/items/ItemDigiBow.java</p>
+<p>This class extends the standard minecraft bow so that it acts just like it. We will want to
+  add a method that when it is seen that this item is not enchanted, we will add enchantments.</p>
+<ol>
+  <li>First you can navigate to src/main/java/com/digitaladventures/digimod/items/base/ItemBase.java and grab
+  the onUpdate method which is similar to a forever loop, or every tick in other programs. This method will run as long as the item is in our inventory. </li>
+  <li>Next we will need to check if the item is already enchanted so that we don't spam enchantments onto the bow.</li>
+  <li>we can use <pre>if(!stack.isItemEnchanted()){}</pre>, the exclamation point is like saying "is not" in front of a boolean or true/false data type.</li>
+  <li>Next we can add in the enchantment adding script. <pre>stack.addEnchantment(Enchantment, Level);</pre></li
+  <li>The Enchantment required two arguments, the enchantment type and level. You can grab enchantments by accessing the Enchantmens class.</li>
+  <li>It should look something like this. <pre>stack.addEnchantment(Enchantments.FLAME, 3);</pre></li>
+  <li>Below is a list of enchantments you can use, some of them don't really utilize a level.</li>
+</ol>
+
+<ul>
+  <li>Vanishing Curse: Cursed item will disappear after player dies</li>
+  <li>Flame: Turns arrows into flaming arrows</li>
+  <li>Infinity: Shoots an infinite amount of arrows</li>
+  <li>Mending: Uses xp to mend your tools, weapons and armor</li>
+  <li>Power: Increases damage dealt by bow</li>
+  <li>Punch: Increases knockback dealt (enemies repel backwards)</li>
+  <li>Unbreaking:Increases durability of item </li>
+</ul>
+
+<h2>Finished Code</h2>
+<p>This should be located inside of the ItemDigiBow class</p>
+<pre>
+  public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+  {
+    if(!stack.isItemEnchanted()) {
+       stack.addEnchantment(Enchantments.FLAME, 3);
+    }
+  }
+</pre>
