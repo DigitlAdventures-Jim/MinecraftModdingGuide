@@ -20,9 +20,9 @@
     This code simply points to the block model as the one it should use for when the block is being held like an item.</li>
 
   <pre>{
-    {  
-       "parent": "dm:block/my_block"  
-    }  
+    {
+       "parent": "dm:block/my_block"
+    }
   </pre>
 
 </ol>
@@ -37,12 +37,12 @@
   <li>double click into this new my_block.json file and change the texture location to match your new block.</li>
   <li>block/cube_all is the key to this script as it makes the texture for our block the same on all sides.</li>
   <pre>{
-    {    
-       "parent": "block/cube_all", 
-       "textures": { 
-           "all": "dm:blocks/digi_block" 
-       } 
-    } 
+    {
+       "parent": "block/cube_all",
+       "textures": {
+           "all": "dm:blocks/digi_block"
+       }
+    }
   </pre>
 
 </ol>
@@ -55,11 +55,11 @@ levers up or down, fences facing north, south, east or west.</p>
   <li>Navigate to MDKExample/src/main/resources/assets.dm/lang/en_us.lang</li>
   <li>Copy and past the digi_block.json file, or create a new .json file with the code below.</li>
   <li>this json markup code is to just display the block without any varients.</li>
-  <pre> {   
-    "variants": { 
-        "normal": { "model": "dm:my_block" } 
-    } 
-  } 
+  <pre> {
+    "variants": {
+        "normal": { "model": "dm:my_block" }
+    }
+  }
   </pre>
 </ol>
 
@@ -78,10 +78,10 @@ levers up or down, fences facing north, south, east or west.</p>
 <h2>Initialize</h2>
 
 <ol>
-  <li>Navigate to /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiItems.java</li>
+  <li>Navigate to /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiBlocks.java</li>
   <li>Scroll to where it says "//New Blocks"</li>
-  <li>Add this new line of Java Code "public static final Item MY_BLOCK = new BlockBase("my_block");"</li>
-  <li>In this code we are creating a new Item called MY_BLOCK which is a clone of the BlockBase</li>
+  <li>Add this new line of Java Code "public static final BlockBase MY_BLOCK = new BlockBase("my_block");"</li>
+  <li>In this code we are creating a new BlockBase called MY_BLOCK which is an extension of the standard minecraft Block</li>
   <li>BlockBase holds all of the information for adding this block into minecraft and connecting
   the texture and model files to this item.</li>
   <li>Public static final are keywords which describe how this new instance or clone of the BaseBlock can be
