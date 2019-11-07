@@ -1,0 +1,40 @@
+<h1>Super Sprinting</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 1st-8th</li>
+  <li>Skill Level Intermediate</li>
+</ul>
+
+<h2>Introduction</h2>
+
+<h2>Activity</h2>
+
+
+<h2>Find DigiEvents</h2>
+<ol>
+
+<li>Navigate to src/main/java/com/digitaladventures/digimod/DigiEvents.java</li>
+
+<li>Start by subscribing a new event within this class file. When we subscribe to an event it
+  allows this code to listen for and trigger once the event associated with it occurs.</li>
+</ol>
+
+<h2>Create Super Sprinting Event</h2>
+<ol>
+  <li>Next create our new listening event called SuperSprinting, which will be passing through the PlayerTickEvent
+  that we can give an instance/temporary name of 'event'</li>
+  <li>event will now hold information about the player every tick of the game.</li>
+
+
+<h2>Completed Code</h2>
+<pre>
+  @SubscribeEvent
+	public void SuperSprinting(PlayerTickEvent event){
+		if(event.player.isSprinting()) {
+			event.player.capabilities.setPlayerWalkSpeed(1f);
+		}else {
+			event.player.capabilities.setPlayerWalkSpeed(0.1f);
+		}
+	}
+</pre>
