@@ -1,0 +1,47 @@
+<h1>502 Super Sword</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 1st-8th</li>
+  <li>Skill Level Basic</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>In this project we will be creating a new sword that will have special abilities. We will learn how to
+add a new texture into our game as well as learn a few functions and how to comment and uncomment code.</p>
+
+<h2>Activity</h2>
+<p>In this activity student should learn how parameters work in functions</p>
+<ol>
+  <li>Functions or Methods are ways that we can tell objects or things to do a task or instruction in Java.</li>
+  <li>Have each student create a single word function on the board like "Jump()", "Spin()" or "Draw()".</li>
+  <li>Next students should do each of the functions.</li>
+  <li>Then inside of the "()" write down a parameter for each function. For example. Jump(height), Spin(rotations), Draw(shape)</li>
+  <li>Make each student then fill in the blanks and choose a number/word for each function like Jump(10 feet), Spin(2 times) or Draw(circle)</li>
+  <li>Have students do each of the functions again.</li>
+</ol>
+
+<h2>Create Sword Texture</h2>
+<p>Use the <a target="_blank" href="../guides/create_item_texture.html">Create Item Texture </a> to create a new sword design.</p>
+
+<h2>Replace digi_supersword.png file with your new image.</h2>
+<p>Use the <a target="_blank" href="../guides/replace_item_texture.html">Relace Item Texture Guide</a> to replace the digi_supersword.png file with your own sword design.</p>
+
+<h2>Customize Sword Abilities</h2>
+<p>Navigate to and open src/main/java/com/digitaladventures/digimod/items/DigiSuperSword.java</p>
+<p>There should be a method hitEntity which is activated when an entity is hit with this sword.</p>
+<p>We will be adjusting the code within this method, you'll notice each
+of the functions is green. This code is commented, meaning it's disabled and is for the computer to ignore.
+'//' can comment out 1 line, if you want to comment out more lines you can use '/*' and at the end of the comment '*/'</p>
+
+<ul>
+  <li>target.setFire() requires a number for how many seconds to set the enemy/target on fire.</li>
+  <li>attacker.playSound() requires a sound event which can be accessed by typing 'SoundEvents.'</li>
+  <li>target.setVelocity() has 3 parameters, the x,y and z speed of the enemy. 0,5,0 will launch them straight upwards.</li>
+  <li>target.addPotionEffect() is a bit more complex as you'll need to create a new potion each time this occurs. You can customize the MobEffects. portion of this code.</li>
+  <li>the last chunk of code creates an explosion, which you can enable by removing the /* and */</li>
+</ul>
+
+<h2>Advanced</h2>
+<p>Add your own functions by typing in 'target.' or 'attacker.' and search through the list that pops up
+and try to write in the correct parameters.</p>
