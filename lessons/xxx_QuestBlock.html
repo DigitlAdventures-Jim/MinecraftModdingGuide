@@ -1,0 +1,106 @@
+<h1>Lesson 495 Quest Block</h1>
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 1st-8th</li>
+  <li>Skill Level Intermediate/Advanced</li>
+
+</ul>
+
+<h2>Introduction</h2>
+<p>We are going to design a mod today that created a block where when a living
+   entity steps on it, it will create a cage around it as well as apply a harmful effect.</p>
+
+<h2>Activity</h2>
+<p>In programming we may want to access a class that is lower in the object tree.
+In today's project we will need to downcast from the very top level class of Entity (which includes arrows,
+ fireballs and other non-living things) to the more specific class EntityLivingBase. EntityLivingBase is built from the Entity class and includes the living things in
+  minecraft that we will be able to add potion effects to.</p>
+
+
+<h2>Create Block Texture</h2>
+<p>Use the create Create Block Texture guide to create a new block texture.</p>
+<a target="_blank" href="../guides/create_block_texture.html">Create Block Texture</a>
+
+<h2>Create a block</h2>
+<p>Use the Block Creation guide add a new custom block to minecraft.</p>
+<a target="_blank" href="../guides/create_block.html">Create Block</a>
+
+<h2>Rename the Block</h2>
+<p>Use the Naming Items and Blocks guide to change the name of the digi_block within the en_us.lang file.</p>
+<p>Feel free to use special color codes for more unique names here.</p>
+<a target="_blank" href="../guides/naming_items_blocks.html">Naming Items,Blocks and Tabs</a>
+
+<h2>Test your Block</h2>
+<ul>
+  <li>Press the run button at the top left to test your block to see if it has been added to the minecraft mod.</li>
+  <li>Students should create or join a single player, creative mode world.</li>
+</ul>
+
+<h2>Create TrapBlock Class</h2>
+<p>Within the /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiBlocks.java file
+we will want to change the class of our custom block from BlockBase to TrapBlock</p>
+<pre>public static final BlockBase TRAP_BLOCK = new TrapBlock("trap_block"); </pre>
+
+<ol>
+  <li>Click on the lightbulb on the left of this line of code to create a new class called TrapBlock.</li>
+  <li>In the package name you will want to type in "com.digitaladventures.digimod.blocks".</li>
+  <li>This should open a new class, we will want to make sure this Block extends BlockBase.</li>
+  <li>BlockBase sets up the block so it is registered into our mod.</li>
+  <li>Hover over the error on the left and add in the required constructor.</li>
+</ol>
+
+
+<h2>CODE </h2>
+<pre>
+
+    int questCount = 10;
+  	ItemStack questItem = new ItemStack(Items.APPLE);
+  	Item reward = Items.DIAMOND;
+
+      public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+      {
+      	
+      	if(!worldIn.isRemote) {
+  	    	if (playerIn.inventory.hasItemStack(questItem)) {
+  	    		int slot = playerIn.inventory.getSlotFor(questItem);
+  	    		playerIn.inventory.decrStackSize(slot, 1);
+  	    		questCount-=1;
+  	    		playerIn.sendMessage(new TextComponentString("Thank you"));
+
+  	    		if (questCount<1) {
+  	    			playerIn.dropItem(reward, 1);
+  	    			playerIn.sendMessage(new TextComponentString("Quest Completed"));
+  	    			questCount=10;
+  	    			worldIn.destroyBlock(pos, false);
+  	    		}
+  	    	}else{
+  	    		playerIn.sendMessage(new TextComponentString("Bring "+ Integer.toString(questCount) +" "+ questItem.getDisplayName()+"(s) for a reward!"));
+
+  	    	}
+      	}
+          return true;
+      }
+
+</pre>
+
+
+<h2>Test your Block</h2>
+<ul>
+  <li>Press the run button at the top left to test your block to see if it has
+    been added to the minecraft mod.</li>
+  <li>Students should create or join a single player, creative mode world.</li>
+  <li>You can switch to survival mode by typing "/gamemode s" while in the game.</li>
+  <li>Try breaking it in survival with a pickaxe.</li>
+</ul>
+
+<h2>Intermediate: Extend Trap container</h2>
+<p>Try to create a trap that has a large interior for larger amounts of enemies to trap.</p>
+
+<h2>Advanced: Create Block Recipe</h2>
+<p>Try to create a recipe inside of the recipes.json file inside of resources. You can try using the <a target="_blank" href="../guides/create_recipe.html">Create Recipe guide.</a></p>
+<ol>
+  <li>Navigate to src/main/resources/assets.dm.recipes.</li>
+  <li>Copy and paste either a shaped or shapeless recipe.</li>
+  <li>Adjust the name of the file and it's contents to match your recipe idea.</li>
+
+</ol>
