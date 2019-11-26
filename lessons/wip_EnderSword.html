@@ -12,17 +12,17 @@
 
 
 <h2>CODE</h2>
+
+//Should be located within sword/item class.
+
 <pre>
-  //Should be located within sword/item class.
   public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand hand)
   {
   if(player.isSwingInProgress) {
     BlockPos pos =  player.rayTrace(100, 1.0F).getBlockPos();
     player.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
     player.fallDistance=0f;
-
   }
-      return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+    return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
   }
-
 </pre>

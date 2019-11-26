@@ -3,7 +3,7 @@
 <ul>
   <li>Minecraft Modding 1.12</li>
   <li>Digital Hackers 1st-8th</li>
-  <li>Skill Level Intermediate</li>
+  <li>Skill Level Basic</li>
 </ul>
 
 <h2>Introduction</h2>
@@ -25,6 +25,15 @@
   <li>Next create our new listening event called SuperSprinting, which will be passing through the PlayerTickEvent
   that we can give an instance/temporary name of 'event'</li>
   <li>event will now hold information about the player every tick of the game.</li>
+  <pre>
+    @SubscribeEvent
+    public void SuperSprinting(PlayerTickEvent event){
+    }
+  </pre>
+<li>Next we want to check if the player is sprinting</li>
+<li>If the player is sprinting then we will set the players walkspeed to 1F, which is about 1block per tick.</li>
+<li>If we are not sprinting we will se the speed back to 0.1F which is about the normal speed of a player in minecraft.</li>
+</ol>
 
 
 <h2>Completed Code</h2>
@@ -38,3 +47,6 @@
 		}
 	}
 </pre>
+
+<h2>Intermediate</h2>
+<p>Change some other player capabilities.</p>
