@@ -1,0 +1,89 @@
+<h1>Exploding Arrows</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 1st-8th</li>
+  <li>Skill Level Intermediate</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>In this project we will be creating a mod where whenever an arrow hits something, an explosion will
+be made.</p>
+
+<h2>Activity</h2>
+<p>Load up your minecraft workspace and then create a new creative mode world and build
+a tower that you can launch your arrows from.</p>
+
+<h2>Find DigiEvents</h2>
+<ol>
+<li>Navigate to src/main/java/com/digitaladventures/digimod/DigiEvents.java</li>
+
+<li>Start by subscribing a new event within this class file. When we subscribe to an event it
+  allows this code to listen for, and trigger once the event associated with it occurs.</li>
+</ol>
+
+<h2>Create Exploding Arrows Event</h2>
+<ol>
+  <li>Next create our new listening event called ExplodingArrows, which will be passing through the ProjectileImpactEvent
+  that we can give an instance/temporary name of 'event'</li>
+  <pre>
+    @SubscribeEvent
+  	public void ExplodingArrows(ProjectileImpactEvent event)
+  	{
+    </pre>
+  <li>event will now hold information each time we a projectile makes an impact. including the position of the impact
+  and the object which did the impacting.</li>
+  <li>Next we will check to see if the entity that impacted was an instance of the arrow. This means that the
+  object that made the impact was something that uses the class EntityArrow</li>
+  <pre>if (event.getEntity() instanceof EntityArrow)
+     {
+
+     }</pre>
+  <li>Within this if statement we will grab the world that this event took place in.</li>
+  <li>Then we will grab the x, y and z position of the projectile.</li>
+  <pre>
+    World w = event.getEntity().getEntityWorld();
+    double x = event.getEntity().posX;
+    double y = event.getEntity().posY;
+    double z = event.getEntity().posZ;
+  </pre>
+  <li>Finally we will create the explosion code filling in the information we just grabbed.</li>
+  <li>w.createExplosion() requires 6 parameters. We need the entity that creates the explosion;
+    the x,y,z positions; the explosion power and wether or not damage will be done by the explosion. </li>
+    <li>We can use null for the entity since we are creating this explosion out of thin air.</li>
+    <li>The variables x,y and z from above can be used for the positions</li>
+    <li>the explosion size can be 1f to 10f. 1F has about the radius of 1 block while 10f is around 10 blocks radius.</li>
+    <li>Lastly we will want to use a boolean of true for the explosion destruction parameter as that is more fun.</li>
+</ol>
+
+
+<h2>Completed Code</h2>
+<pre>
+  @SubscribeEvent
+	public void ExplodingArrows(ProjectileImpactEvent event)
+	{
+		if (event.getEntity() instanceof EntityArrow) {
+			World w = event.getEntity().getEntityWorld();
+			double x = event.getEntity().posX;
+			double y = event.getEntity().posY;
+			double z = event.getEntity().posZ;
+			w.createExplosion(null, x, y, z, 5f, true);
+
+		}
+	}
+</pre>
+
+<h2>Test your Arrows</h2>
+<ul>
+  <li>Press the run button at the top left.</li>
+  <li>Students should create or join a single player, creative mode world.</li>
+  <li>You can switch to survival mode by typing "/gamemode s" while in the game.</li>
+  <li>Try shooting an arrow from your tower!</li>
+</ul>
+
+<h2>Intermediate</h2>
+<p>Change the entity type for the explosion to EntitySnowball or another projectil type.</p>
+
+<h2>Advanced</h2>
+<p>Adjust the effect to create blocks instead of destroying them with w.setBlockState(pos,IBlockState);</p>
+<p>You can find more informtation on block building <a href="497_TrapBlock.html">here</a></p>
