@@ -36,19 +36,21 @@ In today's project we will need to downcast from the very top level class of Ent
   <li>Students should create or join a single player, creative mode world.</li>
 </ul>
 
-<h2>Create TrapBlock Class</h2>
+<h2>Create QuestBlock Class</h2>
 <p>Within the /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiBlocks.java file
-we will want to change the class of our custom block from BlockBase to TrapBlock</p>
-<pre>public static final BlockBase TRAP_BLOCK = new TrapBlock("trap_block"); </pre>
+we will want to change the class of our custom block from BlockBase to QuestBlock</p>
+<pre>public static final BlockBase QUEST_BLOCK = new QuestBlock("quest_block"); </pre>
 
 <ol>
-  <li>Click on the lightbulb on the left of this line of code to create a new class called TrapBlock.</li>
+  <li>Click on the lightbulb on the left of this line of code to create a new class called QuestBlock.</li>
   <li>In the package name you will want to type in "com.digitaladventures.digimod.blocks".</li>
   <li>This should open a new class, we will want to make sure this Block extends BlockBase.</li>
   <li>BlockBase sets up the block so it is registered into our mod.</li>
-  <li>Hover over the error on the left and add in the required constructor.</li>
+  <li>Hover over the error icon on the left and add in the required constructor.</li>
 </ol>
 
+<h2>Set up</h2>
+<p>In minecraft each block is a clone of a </p>
 
 <h2>CODE </h2>
 <pre>
@@ -59,7 +61,7 @@ we will want to change the class of our custom block from BlockBase to TrapBlock
 
       public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
       {
-      	
+
       	if(!worldIn.isRemote) {
   	    	if (playerIn.inventory.hasItemStack(questItem)) {
   	    		int slot = playerIn.inventory.getSlotFor(questItem);
@@ -90,7 +92,7 @@ we will want to change the class of our custom block from BlockBase to TrapBlock
     been added to the minecraft mod.</li>
   <li>Students should create or join a single player, creative mode world.</li>
   <li>You can switch to survival mode by typing "/gamemode s" while in the game.</li>
-  <li>Try breaking it in survival with a pickaxe.</li>
+  <li>Try right clicking on the block with the quest item and without.</li>
 </ul>
 
 <h2>Intermediate: Extend Trap container</h2>
