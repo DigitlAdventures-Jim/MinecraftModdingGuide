@@ -1,0 +1,190 @@
+<h1>Lesson 517 Quest Block</h1>
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 5th-8th</li>
+  <li>Skill Level Intermediate/Advanced</li>
+
+</ul>
+
+<h2>Introduction</h2>
+<p>We are going to design a mod where we need to give items to a block that will give us a reward after giving a certain amount.</p>
+
+<h2>Activity</h2>
+<p>We are going to be using  if statements and if/else statements to create our code for the Quest Blocks. We are going to walk through the process using a flow chart!</p>
+<pre>
+[Right Click on a block]
+    |                    \
+[Has quest item]          [Don't have item]
+    |           \                          \
+[Is 10th Item]   [Is not 10th item]        [Tell player they don't have the quest item]
+    |                              \
+[Give reward to player]             [Remove item and tell player to find more of quest item]
+    |
+[Remove quest item, Break Block]
+</pre>
+
+<h2>Create Block Texture</h2>
+<p>Use the create Create Block Texture guide to create a new block texture.</p>
+<a target="_blank" href="../guides/create_block_texture.html">Create Block Texture</a>
+
+<h2>Create a block</h2>
+<p>Use the Block Creation guide add a new custom block to minecraft.</p>
+<a target="_blank" href="../guides/create_block.html">Create Block</a>
+
+<h2>Rename the Block</h2>
+<p>Use the Naming Items and Blocks guide to change the name of the digi_block within the en_us.lang file.</p>
+<p>Feel free to use special color codes for more unique names here.</p>
+<a target="_blank" href="../guides/naming_items_blocks.html">Naming Items,Blocks and Tabs</a>
+
+<h2>Test your Block</h2>
+<ul>
+  <li>Press the run button at the top left to test your block to see if it has been added to the minecraft mod.</li>
+  <li>Students should create or join a single player, creative mode world.</li>
+</ul>
+
+<h2>Create QuestBlock Class</h2>
+<p>Within the /MDKExample/src/main/java/com/digitaladventures/digimod/init/DigiBlocks.java file
+we will want to change the class of our custom block from BlockBase to QuestBlock</p>
+<pre>public static final BlockBase QUEST_BLOCK = new QuestBlock("quest_block"); </pre>
+
+<ol>
+  <li>Click on the lightbulb on the left of this line of code to create a new class called QuestBlock.</li>
+  <li>In the package name you will want to type in "com.digitaladventures.digimod.blocks".</li>
+  <li>This should open a new class, we will want to make sure this Block extends BlockBase.</li>
+  <li>BlockBase sets up the block so it is registered into our mod.</li>
+  <li>Hover over the error icon on the left and add in the required constructor.</li>
+</ol>
+
+<h2>Set up</h2>
+<p>In minecraft each Quest Block placed shares the same Block Class. This means that every Quest Block will share variables. So you can deposit your quest item to any of the blocks.
+</p>
+<ol>
+  <li>Create 3 variables within the QuestBlock class, but outside of the constructor</li>
+  <li>Create a variable called questCount and set it to 10, This is the total amount of the quest item the player will need to bring.</li>
+  <li>Choose an ItemStack as the item to give to the player and set it to questItem.</li>
+  <li>Set an Item reward variable to what you want the player to get as a reward.</li>
+  <pre>
+    int questCount = 10;
+    ItemStack questItem = new ItemStack(Items.APPLE);
+    Item reward = Items.DIAMOND;
+  </pre>
+
+</ol>
+
+
+<h2>Activate the block</h2>
+<ol>
+  <li>Add in the method onBlockActivated(){}, you can find this in the BlockBase class.</li>
+  <li>Next we will want to make sure this action only occurs once (for the player only and not the server), so we will wrap the code in an if(!worldIn.isRemote){} condition.</li>
+  <li>Next we will check if your inventory has the quest item. This may be a good time to create an else section, since we want something to happen if we don't have the item.</li>
+  <pre>
+    if(!worldIn.isRemote) {
+      if (playerIn.inventory.hasItemStack(questItem)) {
+
+      }else{
+
+      }
+    }
+  </pre>
+</ol>
+
+<h2>Remove the item</h2>
+<p>Within the top portion of this if/else statement we will remove a quest item.</p>
+<ol>
+  <li>First we will grab an integer for the quest item using getSlotFor().</li>
+  <li>Next we will use that slot value and decrease the stack size by 1.</li>
+  <li>Then we will decrease the quest count we declared above by 1.</li>
+  <li>Finally send a message to the player that says "Thank you"</li>
+  <li>TextComponentString() is a way to send a simple string as a message.</li>
+
+  <pre>
+    int slot = playerIn.inventory.getSlotFor(questItem);
+    playerIn.inventory.decrStackSize(slot, 1);
+		questCount-=1;
+		playerIn.sendMessage(new TextComponentString("Thank you"));
+  </pre>
+</ol>
+
+<h2>Give Reward</h2>
+<p>After an item is deposited, we will check to see if you have reached our goal.</p>
+<ol>
+  <li>Write an if statement that checks to see if questCount < 1</li>
+  <li>Make the player drop a reward (this is the easiest way to spawn an item near the player)</li>
+  <li>Create message for completing the quest</li>
+  <li>Reset the questCount for future use.</li>
+  <li>Destroy the quest block</li>
+</ol>
+
+<pre>
+  playerIn.dropItem(reward, 1);
+  playerIn.sendMessage(new TextComponentString("Quest Completed"));
+  questCount=10;
+  worldIn.destroyBlock(pos, false);
+
+</pre>
+
+<h2>Else Statement</h2>
+<p>If the player does not have the quest item we will message them that they need to bring one.</p>
+
+<li>We can use the .sendMessage() and TextComponentString() to send a message with all of the information needed for the player.</li>
+  <pre>
+    	playerIn.sendMessage(new TextComponentString("Bring "+ Integer.toString(questCount) +" "+ questItem.getDisplayName()+"(s) for a reward!"));
+  </pre>
+
+
+
+
+
+<h2>Test your Block</h2>
+<ul>
+  <li>Press the run button at the top left to test your block to see if it has
+    been added to the minecraft mod.</li>
+  <li>Students should create or join a single player, creative mode world.</li>
+  <li>You can switch to survival mode by typing "/gamemode s" while in the game.</li>
+  <li>Try right clicking on the block with the quest item and without.</li>
+</ul>
+
+<h2>Intermediate: Extend Trap container</h2>
+<p>Change the questCount, QuestItem and Reward for this script if you haven't already.</p>
+
+<h2>Advanced: Create Block Recipe</h2>
+<p>Try to create a recipe inside of the recipes.json file inside of resources. You can try using the <a target="_blank" href="../guides/create_recipe.html">Create Recipe guide.</a></p>
+<ol>
+  <li>Navigate to src/main/resources/assets.dm.recipes.</li>
+  <li>Copy and paste either a shaped or shapeless recipe.</li>
+  <li>Adjust the name of the file and it's contents to match your recipe idea.</li>
+
+</ol>
+
+
+<h2>CODE </h2>
+
+<pre>
+    int questCount = 10;
+  	ItemStack questItem = new ItemStack(Items.APPLE);
+  	Item reward = Items.DIAMOND;
+
+      public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+      {
+
+      	if(!worldIn.isRemote) {
+  	    	if (playerIn.inventory.hasItemStack(questItem)) {
+  	    		int slot = playerIn.inventory.getSlotFor(questItem);
+  	    		playerIn.inventory.decrStackSize(slot, 1);
+  	    		questCount-=1;
+  	    		playerIn.sendMessage(new TextComponentString("Thank you"));
+
+  	    		if (questCount<1) {
+  	    			playerIn.dropItem(reward, 1);
+  	    			playerIn.sendMessage(new TextComponentString("Quest Completed"));
+  	    			questCount=10;
+  	    			worldIn.destroyBlock(pos, false);
+  	    		}
+  	    	}else{
+  	    		playerIn.sendMessage(new TextComponentString("Bring "+ Integer.toString(questCount) +" "+ questItem.getDisplayName()+"(s) for a reward!"));
+
+  	    	}
+      	}
+          return true;
+      }
+</pre>
