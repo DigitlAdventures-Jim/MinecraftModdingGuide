@@ -1,0 +1,70 @@
+<h1>Ender Teleport Sword</h1>
+
+<ul>
+  <li>Minecraft Modding 1.12</li>
+  <li>Digital Hackers 3rd-8th</li>
+  <li>Skill Level Intermediate</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>In this mod we will be creating a sword that can teleport nearby, similar to how an enderman is allowed to teleport.</p>
+
+<h2>Activity</h2>
+<p>In this project we will need to program using a rayTrace, a ray trace is a way to create a
+   line or path from one position in 3d to another, usually referring to light.
+   As an activity we will close our eyes and then point in a random direction. Then we will need to trace the path from our
+   finger to the object we are pointing to or that is in the way of our pointing path.
+</p>
+
+
+<h2>Create custom sword tool</h2>
+<p>Use the <a target="_blank" href="../guides/create_item_texture.html">Create Item Texture </a> to create a new sword design.</p>
+<p>Use the <a target="_blank" href="../guides/create_item.html">Create Item Guide</a> to create a new Sword in minecraft</p>
+
+<h2>Create Custom Class</h2>
+  <p>After we create the Initialize code we will want to change the class of the Sword.</p>
+  <ol>
+    <li>Your Initialize code should read...</li>
+    <pre>public static final ItemSword ENDER_SWORD = new ItemEnderSword("ender_sword", MATERIAL_DIGI);</pre>
+    <li>Click the error lightbulb on the left of this line of code to create a new class automatically. </li>
+    <li>In the popup window you will want to change the package name to com.digitaladventures.digimod.item then press finish.</li>
+    <li>This should open up a new file with our custom ItemEnderSword class.</li>
+  </ol>
+
+<h2>Custom EnderSword Code</h2>
+<p>Our goal will be to teleport our character when we click the left and right click simultaneously.</p>
+<p>Our code will include an event that will detect right clicks with our custom item, an if statement that checks to see if the player
+is swinging the item and then create a raytrace that gives us the position of the block we are looking at. Finally we teleport there and then reduce fall distance
+so we do not get falling damage when teleporting.</p>
+
+<h2>CODE</h2>
+
+<ol>
+  <li>You can copy and paste the onItemRightClick event from the digimod.items.base.ItemBase.java file or type it in.</li>
+  <li>Next create the if statement that checks if the player who is right clicking is swinging their item.</li>
+  <li>Inside that if statement you can create a BlockPos pos object to hold the position of the players raytrace. RayTrace() takes 2 parametes,
+  the maxiumum distance and the position of your players eyes which is 1 block high.</li>
+  <li>Next we will set your players position to that position that we just saved into BlockPos pos. We add 1 to the Y position so we are above the block we are teleporting to.</li>
+  <li>Then we can set you player.fallDistance to = 0f;</li>
+</ol>
+
+<pre>
+  public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand hand)
+  {
+  if(player.isSwingInProgress) {
+    BlockPos pos =  player.rayTrace(100, 1.0F).getBlockPos();
+    player.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
+    player.fallDistance=0f;
+  }
+    return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+  }
+</pre>
+
+<h2>Advanced</h2>
+<p>Add partical effects and sounds each time you teleport!</p>
+<pre>
+player.playSound(SoundEvents.ENTITY_LIGHTNING_THUNDER, 1f, 1f); //Sound of lightning
+worldIn.spawnParticle(EnumParticleTypes.CRIT_MAGIC, player.posX+1, player.posY, player.posZ, 0f, 0f, 0f); //left particle
+worldIn.spawnParticle(EnumParticleTypes.CRIT_MAGIC, player.posX, player.posY+2, player.posZ, 0f, 0f, 0f); //above particle
+worldIn.spawnParticle(EnumParticleTypes.CRIT_MAGIC, player.posX-1, player.posY, player.posZ, 0f, 0f, 0f); //right particle
+</pre>
